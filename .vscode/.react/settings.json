@@ -1,0 +1,5 @@
+{
+  "editor.codeAtionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
