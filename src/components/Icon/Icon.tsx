@@ -3,6 +3,7 @@ import { EyeOffIcon } from '../../assets/icons/EyeOffIcon';
 import { EyeOnIcon } from '../../assets/icons/EyeOnIcon';
 import { ThemeColors } from '../../theme/theme';
 import { useAppTheme } from '../../hooks/useAppTheme';
+import { ArrowBack } from '../../assets/icons/ArrowBack';
 
 export interface IconBase {
   size?: number;
@@ -26,6 +27,7 @@ export function Icon({ name, size, color = 'backgroundContrast' }: Props) {
 const iconRegistry = {
   eyesOn: EyeOnIcon,
   eyesOff: EyeOffIcon,
+  arrowBack: ArrowBack
 };
 
 type IconType = typeof iconRegistry;
