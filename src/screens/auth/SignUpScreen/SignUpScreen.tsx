@@ -7,7 +7,7 @@ import { TextInput } from "../../../components/TextInput/TextInput";
 
 export function SignUpScreen() {
   return (
-    <Screen canGoBack={true}>
+    <Screen canGoBack={true} >
       <Box mb='s10' mt="s56">
         <TextInput placeholder="Nome" style={{ borderWidth: 1, height: 50 }} />
       </Box>
@@ -19,6 +19,7 @@ export function SignUpScreen() {
       <Box mb='s10'>
         <TextInput placeholder="Senha" style={{ borderWidth: 1, height: 50 }} />
       </Box>
+
 
       <Button marginTop='s48' title='Criar Conta' />
       <Box mt="s20" alignItems="center">
