@@ -4,19 +4,21 @@ import { EyeOnIcon } from '../../assets/icons/EyeOnIcon';
 import { ThemeColors } from '../../theme/theme';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { ArrowBack } from '../../assets/icons/ArrowBack';
+import { CheckRound } from '../../assets/icons/CheckRound';
+import { MessageRound } from '../../assets/icons/MesssageRound';
 
 export interface IconBase {
   size?: number;
   color?: string;
 }
 
-interface Props {
+export interface IconProps {
   name: IconName;
   color?: ThemeColors;
   size?: number;
 }
 
-export function Icon({ name, size, color = 'backgroundContrast' }: Props) {
+export function Icon({ name, size, color = 'backgroundContrast' }: IconProps) {
   const { colors } = useAppTheme();
 
   const SVGIcon = iconRegistry[name];
@@ -27,7 +29,9 @@ export function Icon({ name, size, color = 'backgroundContrast' }: Props) {
 const iconRegistry = {
   eyesOn: EyeOnIcon,
   eyesOff: EyeOffIcon,
-  arrowBack: ArrowBack
+  arrowBack: ArrowBack,
+  checkRound: CheckRound,
+  messageRound: MessageRound
 };
 
 type IconType = typeof iconRegistry;

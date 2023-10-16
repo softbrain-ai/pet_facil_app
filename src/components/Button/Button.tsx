@@ -1,5 +1,5 @@
 
-import { Text } from '../Text';
+import { Text } from '../Text/Text';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../theme/theme';
 import { TouchableOpacityBox } from '../Box/Box';
