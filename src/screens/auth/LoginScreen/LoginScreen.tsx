@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text } from '../../../components/Text/Text';
-import { Box } from '../../../components/Box/Box';
+
 import { SafeAreaView, View } from 'react-native';
-import { TextInput } from '../../../components/TextInput/TextInput';
-import { Button } from '../../../components/Button/Button';
-import { Screen } from '../../../components/Screen/Screen';
+
+import { TextInput, Button, Screen, Text, Icon } from '@components'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../routes/Routes';
+
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
@@ -20,22 +19,23 @@ export function LoginScreem({ navigation }: ScreenProps) {
   }
 
   return (
-    <Screen>
+    <Screen scrollable>
       <View>
         <SafeAreaView>
-          <Box mb="s20" mt="s56">
-            <TextInput
-              placeholder="Digite seu e-mail"
-              style={{ borderWidth: 1, height: 50 }}
-            />
-          </Box>
 
-          <Box>
-            <TextInput
-              placeholder="Digite sua senha"
-              style={{ borderWidth: 1, height: 50 }}
-            />
-          </Box>
+          <TextInput
+            label='Email'
+            placeholder="Digite seu e-mail"
+            errorMessage='Menssagem de error'
+            boxProps={{ mb: 's20' }}
+          />
+
+          <TextInput
+            label='Senha'
+            placeholder="Digite sua senha"
+            RightComponent={<Icon color='gray2' name='eyesOn' />}
+            boxProps={{ mb: 's10' }}
+          />
 
           <Text onPress={navigateToForgotPasswordScreen} color="primary" preset="paragraphSmall" bold mt="s10">
             Esqueci minha senha

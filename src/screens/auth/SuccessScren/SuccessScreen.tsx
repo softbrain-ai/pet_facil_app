@@ -8,8 +8,10 @@ import { RootStackParamList } from '../../../routes/Routes';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SuccessScreen'>;
 
-export function SuccessScreen({ route }: ScreenProps) {
-  function goBackToLogin() { }
+export function SuccessScreen({ route, navigation }: ScreenProps) {
+  function goBackToLogin() {
+    navigation.goBack();
+  }
 
   return (
     <Screen isDefault={false}>
