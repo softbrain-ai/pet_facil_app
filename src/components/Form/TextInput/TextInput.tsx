@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useAppTheme } from '../../../hooks/useAppTheme';
 
-interface TextInputProps extends RNTextInputProps {
+export interface TextInputProps extends RNTextInputProps {
   label?: string;
   errorMessage?: string;
   RightComponent?: React.ReactElement;
@@ -47,6 +47,7 @@ export function TextInput({
 
         <Box {...$textInputContainer}>
           <RNTextInput
+            autoCapitalize='none'
             ref={inputRef}
             placeholderTextColor={colors.gray2}
             style={$textInputStyle}

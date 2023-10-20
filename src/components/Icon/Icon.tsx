@@ -6,6 +6,7 @@ import { useAppTheme } from '../../hooks/useAppTheme';
 import { ArrowBack } from '../../assets/icons/ArrowBack';
 import { CheckRound } from '../../assets/icons/CheckRound';
 import { MessageRound } from '../../assets/icons/MesssageRound';
+import { Pressable } from 'react-native';
 
 export interface IconBase {
   size?: number;
@@ -16,12 +17,21 @@ export interface IconProps {
   name: IconName;
   color?: ThemeColors;
   size?: number;
+  onPress?: () => void
 }
 
-export function Icon({ name, size, color = 'backgroundContrast' }: IconProps) {
+export function Icon({ name, size, onPress, color = 'backgroundContrast' }: IconProps) {
   const { colors } = useAppTheme();
 
   const SVGIcon = iconRegistry[name];
+
+  if (onPress) {
+    return (
+      <Pressable hitSlop={10} onPress={onPress}>
+        <SVGIcon color={colors[color]} size={size} />
+      </Pressable>
+    )
+  }
 
   return <SVGIcon color={colors[color]} size={size} />;
 }

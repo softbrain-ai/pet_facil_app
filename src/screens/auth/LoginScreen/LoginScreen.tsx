@@ -1,47 +1,81 @@
 import React from 'react';
 
-import { SafeAreaView, View } from 'react-native';
+import { Alert, SafeAreaView, View } from 'react-native';
 
-import { TextInput, Button, Screen, Text, Icon } from '@components'
+import { Button, Screen, Text, FormTextInput, FormPasswordINput } from '@components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../routes/Routes';
-
+import { Controller, useForm } from 'react-hook-form';
+import { FormTypeLogin } from './types';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreem({ navigation }: ScreenProps) {
+  const { control, formState, handleSubmit } = useForm<FormTypeLogin>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
+
+  function submitForm(data: FormTypeLogin) {
+    //TODO: Make sure Called to API
+    Alert.alert(`${data.email} ${data.password}`);
+  }
+
   function navigateToSignUpScreen() {
     navigation.navigate('SignUpScreen');
   }
 
   function navigateToForgotPasswordScreen() {
-    navigation.navigate('ForgotPasswordScreen')
+    navigation.navigate('ForgotPasswordScreen');
   }
 
   return (
     <Screen scrollable>
       <View>
         <SafeAreaView>
-
-          <TextInput
-            label='Email'
+          <FormTextInput
+            control={control}
+            name="email"
+            label="Email"
+            rules={{ required: 'Email obrigatório' }}
             placeholder="Digite seu e-mail"
-            errorMessage='Menssagem de error'
             boxProps={{ mb: 's20' }}
           />
 
-          <TextInput
-            label='Senha'
+          <FormPasswordINput
+            control={control}
+            name="password"
+            label="Senha"
+            rules={{
+              required: 'Senha Obrigatória',
+              minLength: {
+                value: 8,
+                message: 'Senha deve ter no mínimo 8 caracteres'
+              },
+            }}
             placeholder="Digite sua senha"
-            RightComponent={<Icon color='gray2' name='eyesOn' />}
             boxProps={{ mb: 's10' }}
           />
 
-          <Text onPress={navigateToForgotPasswordScreen} color="primary" preset="paragraphSmall" bold mt="s10">
+          <Text
+            onPress={navigateToForgotPasswordScreen}
+            color="primary"
+            preset="paragraphSmall"
+            bold
+            mt="s10">
             Esqueci minha senha
           </Text>
 
-          <Button marginTop="s48" title="Entrar" />
+          <Button
+            disabled={!formState.isValid}
+            onPress={handleSubmit(submitForm)}
+            marginTop="s48"
+            title="Entrar"
+          />
+
           <Button
             onPress={navigateToSignUpScreen}
             preset="outline"
