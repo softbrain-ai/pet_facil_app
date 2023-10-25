@@ -6,11 +6,23 @@ import { Text } from '../../../components/Text/Text';
 import { TextInput } from '../../../components/Form/TextInput/TextInput';
 import { RootStackParamList } from '../../../routes/Routes';
 import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
+import { signUpFormType } from './types';
+import { useForm } from 'react-hook-form';
+import { FormTextInput } from '@components';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 export function SignUpScreen({ navigation }: ScreenProps) {
   const { reset } = useResetNavigationSuccess();
+
+  const { control, formState, handleSubmit } = useForm<signUpFormType>({
+    defaultValues: {
+      nome: '',
+      email: '',
+      senha: '',
+    },
+    mode: 'onChange',
+  });
 
   function submitForm() {
     reset({
@@ -18,25 +30,39 @@ export function SignUpScreen({ navigation }: ScreenProps) {
       description: 'Agora é só fazer login na nossa plataforma',
       icon: {
         name: 'checkRound',
-        color: 'success'
-      }
+        color: 'success',
+      },
     });
   }
 
   return (
     <Screen canGoBack={true} scrollable>
-
-      <TextInput
-        label='Nome'
+      <FormTextInput
+        control={control}
+        label="Nome"
+        name="nome"
         placeholder="Nome"
         boxProps={{ mb: 's20' }}
+        rules={{ required: 'Nome obrigatório' }}
       />
 
-      <TextInput label='Email' placeholder="Email" boxProps={{ mb: 's10' }} />
+      <FormTextInput
+        control={control}
+        name="email"
+        label="Email"
+        placeholder="Email"
+        boxProps={{ mb: 's10' }}
+      // rules={{required: 'E-mail obrigatório'}}
+      />
 
-      <TextInput label='Senha' placeholder="Senha" boxProps={{ mb: 's10' }} />
+      <TextInput label="Senha" placeholder="Senha" boxProps={{ mb: 's10' }} />
 
-      <Button onPress={submitForm} marginTop="s48" title="Criar Conta" />
+      <Button
+        disabled={!formState.isValid}
+        onPress={submitForm}
+        marginTop="s48"
+        title="Criar Conta"
+      />
 
       <Box mt="s20" alignItems="center">
         <Text

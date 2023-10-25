@@ -2,7 +2,6 @@ import React from 'react';
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text/Text';
 import { Box } from '../../../components/Box/Box';
-import { TextInput } from '../../../components/Form/TextInput/TextInput';
 import { Button } from '../../../components/Button/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'src/routes/Routes';
@@ -18,8 +17,6 @@ export function ForgotPasswordScreen({ navigation }: ScreenProps) {
   const { reset } = useResetNavigationSuccess();
 
   function submitForm() {
-    //TODO: Make sure Call to API
-
     reset({
       title: `Enviamos as instruções ${'\n'}para seu e-mail`,
       description: `Clique no link enviado no seu e-mail para recuperar sua senha`,

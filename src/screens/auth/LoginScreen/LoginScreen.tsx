@@ -1,14 +1,10 @@
 import React from 'react';
-
 import { Alert, SafeAreaView, View } from 'react-native';
-
 import { Button, Screen, Text, FormTextInput, FormPasswordINput } from '@components';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../routes/Routes';
-import { Controller, useForm } from 'react-hook-form';
-import { FormTypeLogin } from './types';
+import { useForm } from 'react-hook-form';
+import { FormTypeLogin, ScreenProps } from './types';
+import { LoginScreenController } from './LoginScreenController';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreem({ navigation }: ScreenProps) {
   const { control, formState, handleSubmit } = useForm<FormTypeLogin>({
@@ -19,8 +15,12 @@ export function LoginScreem({ navigation }: ScreenProps) {
     mode: 'onChange',
   });
 
+  const teste = new LoginScreenController()
+
+
   function submitForm(data: FormTypeLogin) {
     //TODO: Make sure Called to API
+    teste.submit()
     Alert.alert(`${data.email} ${data.password}`);
   }
 
@@ -53,7 +53,7 @@ export function LoginScreem({ navigation }: ScreenProps) {
               required: 'Senha Obrigatória',
               minLength: {
                 value: 8,
-                message: 'Senha deve ter no mínimo 8 caracteres'
+                message: 'Senha deve ter no mínimo 8 caracteres',
               },
             }}
             placeholder="Digite sua senha"

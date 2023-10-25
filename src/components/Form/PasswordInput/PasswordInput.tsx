@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput, TextInputProps } from '../TextInput/TextInput';
 import { Icon } from '@components';
-import { Pressable } from 'react-native';
 
 export type PasswordInputProps = Omit<TextInputProps, 'RightComponent'>;
 
@@ -17,14 +16,12 @@ export function PasswordInput(props: PasswordInputProps) {
       secureTextEntry={isHide}
       {...props}
       RightComponent={
-
         <Icon
           onPress={toggleHide}
           color="gray2"
           name={isHide ? 'eyesOn' : 'eyesOff'}
         />
       }
-
     />
   );
 }
