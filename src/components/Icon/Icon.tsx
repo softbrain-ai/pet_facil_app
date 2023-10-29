@@ -7,10 +7,17 @@ import { ArrowBack } from '../../assets/icons/ArrowBack';
 import { CheckRound } from '../../assets/icons/CheckRound';
 import { MessageRound } from '../../assets/icons/MesssageRound';
 import { Pressable } from 'react-native';
+import { HeaderIcon } from '../../assets/icons/HeaderIcon';
+import { Elipse } from '../../assets/icons/Elipse';
+import { type SvgProps } from 'react-native-svg';
 
-export interface IconBase {
+export interface IconBase extends SvgProps {
   size?: number;
   color?: string;
+  xmlns?: string;
+  xmlnsXlink?: string;
+  xmlSpace?: string;
+
 }
 
 export interface IconProps {
@@ -41,7 +48,9 @@ const iconRegistry = {
   eyesOff: EyeOffIcon,
   arrowBack: ArrowBack,
   checkRound: CheckRound,
-  messageRound: MessageRound
+  messageRound: MessageRound,
+  headerIcon: HeaderIcon,
+  elipse: Elipse
 };
 
 type IconType = typeof iconRegistry;

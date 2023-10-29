@@ -32,49 +32,42 @@ export function Screen({
       style={{ flex: 1 }}
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}>
       <Container>
-        <Box style={{ paddingTop: isDefault ? 0 : top }}>
-          {isDefault && (
-            <Box
-              style={{
-                backgroundColor: '#074C4E',
-                height: 400,
-                borderBottomLeftRadius: 200,
-                borderBottomRightRadius: 200,
-                paddingTop: isDefault ? top : 0
-
-              }}>
-              {canGoBack && (
-                <TouchableOpacityBox
-                  onPress={navigation.goBack}
-                  gap="s10"
-                  marginLeft="s24"
-                  marginTop="s52"
-                  backgroundColor="background"
-                  justifyContent="center"
-                  alignItems="center"
-                  style={{
-                    height: 48,
-                    width: 48,
-                    borderRadius: 50,
-
-                    position: 'absolute',
-                  }}>
-                  <Icon name="arrowBack" color="primary" size={21} />
-                </TouchableOpacityBox>
-              )}
-
-              <Box alignItems="center" marginTop="s40">
-                <Text preset="headingLarge" color="background" bold>
-                  Pet
-                </Text>
+        <Box style={{ paddingTop: top, height: isDefault ? 411 : 0, position: 'relative', display: 'flex' }}>
+          {
+            isDefault &&
+            <>
+              <Box style={{ position: 'absolute', top: -360, alignSelf: 'center' }}>
+                <Icon name="elipse" color='primary' />
               </Box>
 
-              <Text></Text>
-            </Box>
-          )}
-
-          <Box paddingHorizontal="s24">{children}</Box>
+              <Text
+                mt='s40'
+                preset="headingLarge"
+                bold
+                color='background'
+                style={{ textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}
+              >
+                PET
+              </Text>
+              <Text
+                mt='s61'
+                bold
+                color='background'
+                style={{ textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}
+              >Estamos quase lá :)</Text>
+              <Text
+                preset="headingLarge"
+                bold
+                color='background'
+                style={{ textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}
+              >
+                Faça seu login
+              </Text>
+            </>
+          }
         </Box>
+
+        <Box paddingHorizontal="s24" pb='s24'>{children}</Box>
       </Container>
     </KeyboardAvoidingView>
   );
