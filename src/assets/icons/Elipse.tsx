@@ -11,7 +11,7 @@ export function Elipse({ color = palette.greenSuccess, size = 48 }: IconBase) {
       height="771"
       viewBox="0 0 771 771"
       fill="none"
-    // xmlns="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <Circle cx="385.5" cy="385.5" r="385.5" fill={color} />
       <Defs>

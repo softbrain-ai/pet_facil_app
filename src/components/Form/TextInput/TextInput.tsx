@@ -1,4 +1,5 @@
-import { Text, Box, BoxProps, $fontFamily, $fontSizes } from '@components';
+import { Text, $fontFamily, $fontSizes } from '../../Text/Text';
+import { Box, BoxProps } from '../../Box/Box'
 
 import React, { useRef } from 'react';
 import {

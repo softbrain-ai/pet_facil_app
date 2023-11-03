@@ -1,12 +1,16 @@
 import React from 'react';
-import { Screen } from '../../../components/Screen/Screen';
-import { Text } from '../../../components/Text/Text';
-import { Box } from '../../../components/Box/Box';
-import { Button } from '../../../components/Button/Button';
+
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from 'src/routes/Routes';
-import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
-import { Icon, PasswordInput } from '@components';
+import { useForm } from 'react-hook-form';
+
+import { RootStackParamList } from '@routes';
+import { FormTextInput, Button, Text, Screen } from '@components';
+import {
+  ForgotPasswordSchema,
+  forgotPasswordSchema,
+} from './forgotPasswordSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useResetNavigationSuccess } from '@hooks';
 
 type ScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -15,6 +19,14 @@ type ScreenProps = NativeStackScreenProps<
 
 export function ForgotPasswordScreen({ navigation }: ScreenProps) {
   const { reset } = useResetNavigationSuccess();
+
+  const { control, formState, handleSubmit } = useForm<ForgotPasswordSchema>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onChange',
+  });
 
   function submitForm() {
     reset({
@@ -36,14 +48,15 @@ export function ForgotPasswordScreen({ navigation }: ScreenProps) {
         Digite seu e-mail e enviaremos as instruções para redefinição de senha
       </Text>
 
-      <PasswordInput
-        label='Senha'
-        placeholder="Digite sua senha"
+      <FormTextInput
+        control={control}
+        name="email"
+        label="Email"
+        placeholder="Digite seu e-mail"
         boxProps={{ mb: 's20' }}
       />
 
-
-      <Button onPress={submitForm} title="Recuperar Senha" />
+      <Button disabled={!formState.isValid} onPress={handleSubmit(submitForm)} title="Recuperar Senha" />
     </Screen>
   );
 }

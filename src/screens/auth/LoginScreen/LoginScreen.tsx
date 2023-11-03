@@ -3,11 +3,12 @@ import { Alert, SafeAreaView, View } from 'react-native';
 import { Button, Screen, Text, FormTextInput, FormPasswordINput } from '@components';
 import { useForm } from 'react-hook-form';
 import { FormTypeLogin, ScreenProps } from './types';
-import { LoginScreenController } from './LoginScreenController';
-
+import { LoginSchema, loginSchema } from './LoginSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export function LoginScreem({ navigation }: ScreenProps) {
-  const { control, formState, handleSubmit } = useForm<FormTypeLogin>({
+  const { control, formState, handleSubmit } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -15,12 +16,8 @@ export function LoginScreem({ navigation }: ScreenProps) {
     mode: 'onChange',
   });
 
-  const teste = new LoginScreenController()
-
-
   function submitForm(data: FormTypeLogin) {
     //TODO: Make sure Called to API
-    teste.submit()
     Alert.alert(`${data.email} ${data.password}`);
   }
 
@@ -40,7 +37,6 @@ export function LoginScreem({ navigation }: ScreenProps) {
             control={control}
             name="email"
             label="Email"
-            rules={{ required: 'Email obrigatório' }}
             placeholder="Digite seu e-mail"
             boxProps={{ mb: 's20' }}
           />
@@ -49,13 +45,6 @@ export function LoginScreem({ navigation }: ScreenProps) {
             control={control}
             name="password"
             label="Senha"
-            rules={{
-              required: 'Senha Obrigatória',
-              minLength: {
-                value: 8,
-                message: 'Senha deve ter no mínimo 8 caracteres',
-              },
-            }}
             placeholder="Digite sua senha"
             boxProps={{ mb: 's10' }}
           />

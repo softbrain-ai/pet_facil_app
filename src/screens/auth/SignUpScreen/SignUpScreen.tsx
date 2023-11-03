@@ -3,23 +3,24 @@ import { Box } from '../../../components/Box/Box';
 import { Button } from '../../../components/Button/Button';
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text/Text';
-import { TextInput } from '../../../components/Form/TextInput/TextInput';
 import { RootStackParamList } from '../../../routes/Routes';
 import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
-import { signUpFormType } from './types';
 import { useForm } from 'react-hook-form';
-import { FormTextInput } from '@components';
+import { FormPasswordINput, FormTextInput } from '@components';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SignUpSchema, signUpSchema } from './SignUpSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 export function SignUpScreen({ navigation }: ScreenProps) {
   const { reset } = useResetNavigationSuccess();
 
-  const { control, formState, handleSubmit } = useForm<signUpFormType>({
+  const { control, formState, handleSubmit } = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
-      nome: '',
+      username: '',
       email: '',
-      senha: '',
+      password: '',
     },
     mode: 'onChange',
   });
@@ -36,14 +37,18 @@ export function SignUpScreen({ navigation }: ScreenProps) {
   }
 
   return (
-    <Screen canGoBack={true} scrollable>
+    <Screen canGoBack={true} isDefault={false} scrollable>
+      {/* //TODO: colocar um botão para voltar aqui */}
+      <Text preset="headingLarge" mb="s24">
+        Criar uma conta
+      </Text>
+
       <FormTextInput
         control={control}
-        label="Nome"
-        name="nome"
+        label="Seu username"
+        name="username"
         placeholder="Nome"
         boxProps={{ mb: 's20' }}
-        rules={{ required: 'Nome obrigatório' }}
       />
 
       <FormTextInput
@@ -52,10 +57,15 @@ export function SignUpScreen({ navigation }: ScreenProps) {
         label="Email"
         placeholder="Email"
         boxProps={{ mb: 's10' }}
-      // rules={{required: 'E-mail obrigatório'}}
       />
 
-      <TextInput label="Senha" placeholder="Senha" boxProps={{ mb: 's10' }} />
+      <FormPasswordINput
+        control={control}
+        name="password"
+        label="Senha"
+        placeholder="Digite sua senha"
+        boxProps={{ mb: 's10' }}
+      />
 
       <Button
         disabled={!formState.isValid}
@@ -66,7 +76,7 @@ export function SignUpScreen({ navigation }: ScreenProps) {
 
       <Box mt="s20" alignItems="center">
         <Text
-          // onPress={backToLogin}
+          onPress={() => navigation.navigate('LoginScreen')}
           preset="headingSmall"
           color="primary"
           mb="s32">
