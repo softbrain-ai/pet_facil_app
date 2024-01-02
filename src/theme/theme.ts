@@ -1,4 +1,4 @@
-import {createTheme} from '@shopify/restyle';
+import { createTheme } from '@shopify/restyle';
 
 export const palette = {
   greenPrimary: '#074C4E',
@@ -9,6 +9,11 @@ export const palette = {
   greenSuccessLight: '#D8FFEC',
   redError: '#EA3838',
   redErrorLight: '#FBECEC',
+
+  pink1: '#FFD7D7',
+  yellow1: '#FDFFB0',
+  orange1: '#FFE0B0',
+  blue1: '#D2F2FF',
 
   grayBlack: '#000000',
   gray1: '#636363',
@@ -41,16 +46,20 @@ export const theme = createTheme({
     s8: 8,
     s10: 10,
     s12: 12,
+    s13: 13,
     s14: 14,
     s16: 16,
     s20: 20,
     s24: 24,
+    s26: 26,
     s32: 32,
+    s36: 36,
     s40: 40,
     s48: 48,
     s52: 52,
     s56: 56,
     s61: 61,
+    s250: 250
   },
   borderRadii: {
     s8: 8,

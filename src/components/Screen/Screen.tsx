@@ -49,6 +49,7 @@ export function Screen({
               >
                 PET
               </Text>
+
               <Text
                 mt='s61'
                 bold

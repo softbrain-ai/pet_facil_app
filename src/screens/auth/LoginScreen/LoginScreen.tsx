@@ -18,7 +18,8 @@ export function LoginScreem({ navigation }: ScreenProps) {
 
   function submitForm(data: FormTypeLogin) {
     //TODO: Make sure Called to API
-    Alert.alert(`${data.email} ${data.password}`);
+    navigation.navigate('HomeScreen');
+
   }
 
   function navigateToSignUpScreen() {

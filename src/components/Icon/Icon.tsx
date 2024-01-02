@@ -9,6 +9,11 @@ import { MessageRound } from '../../assets/icons/MesssageRound';
 import { Pressable } from 'react-native';
 import { HeaderIcon } from '../../assets/icons/HeaderIcon';
 import { Elipse } from '../../assets/icons/Elipse';
+import { ElipseHome } from '../../assets/icons/ElipseHome';
+import { MenuIcon } from '../../assets/icons/MenuIcon';
+import { NotificationIcon } from '../../assets/icons/NotificationIcon';
+import { DogIcon } from '../../assets/icons/DogIcon'
+import { PetFacil } from '../../assets/icons/PetFacil'
 import { type SvgProps } from 'react-native-svg';
 
 export interface IconBase extends SvgProps {
@@ -44,13 +49,18 @@ export function Icon({ name, size, onPress, color = 'backgroundContrast' }: Icon
 }
 
 const iconRegistry = {
+  petFacil: PetFacil,
   eyesOn: EyeOnIcon,
   eyesOff: EyeOffIcon,
   arrowBack: ArrowBack,
   checkRound: CheckRound,
   messageRound: MessageRound,
   headerIcon: HeaderIcon,
-  elipse: Elipse
+  elipse: Elipse,
+  elipseHome: ElipseHome,
+  menu: MenuIcon,
+  notificationIcon: NotificationIcon,
+  dog: DogIcon
 };
 
 type IconType = typeof iconRegistry;
