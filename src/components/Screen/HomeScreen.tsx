@@ -86,7 +86,7 @@ export function HomeScreen({ children, scrollable }: ScreenProps) {
 
         </Box>
 
-        <Box marginTop={'s250'} paddingHorizontal='s16'>
+        <Box marginTop={Platform.OS === 'ios' ? 's250' : 's290'} paddingHorizontal='s16'>
           {children}
         </Box>
       </Container>

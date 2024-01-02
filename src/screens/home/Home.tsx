@@ -8,7 +8,7 @@ type ScreenProps = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
 export function Home({ navigation }: ScreenProps) {
   return (
-    <HomeScreen>
+    <HomeScreen scrollable>
       <TouchableOpacity>
         <Box style={AreaDog} flexDirection="row" gap="s24">
           <Box style={DogIcon} justifyContent="center" alignItems="center">
@@ -47,7 +47,7 @@ export function Home({ navigation }: ScreenProps) {
         </Box>
       </Box>
 
-      <Box flexDirection="row" gap="s20" mb="s16">
+      <Box flexDirection="row" gap="s20" mb="s24">
         <Box style={BoxButton} backgroundColor="orange1">
           <Text preset="paragraphMedium" color='gray1' bold>
             Ração
