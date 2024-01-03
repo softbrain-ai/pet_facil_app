@@ -5,15 +5,19 @@ import { Text } from '../Text/Text';
 import { ScrollViewContainer, ViewContainer } from './components/ScreenContainer';
 import { Box } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
+import { RootDrawParamList } from '@routes';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 
-
+type HomeProps = DrawerScreenProps<RootDrawParamList, 'HomeScreen'>;
 interface ScreenProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  openMenu: () => void
 }
 
-export function HomeScreen({ children, scrollable }: ScreenProps) {
+
+export function HomeScreen({ children, scrollable, openMenu }: ScreenProps) {
   const { top } = useAppSafeArea();
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
@@ -35,7 +39,7 @@ export function HomeScreen({ children, scrollable }: ScreenProps) {
             paddingHorizontal={'s24'}
             paddingTop={'s13'}
           >
-            <TouchableOpacity style={IconButton}>
+            <TouchableOpacity style={IconButton} onPress={() => openMenu()}>
               <Icon name="menu" color='primary' />
             </TouchableOpacity>
 

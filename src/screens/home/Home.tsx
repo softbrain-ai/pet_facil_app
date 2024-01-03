@@ -1,14 +1,20 @@
 import { Box, HomeScreen, Icon, Text, TitleLine } from "@components";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "@routes";
+import { RootDrawParamList, RootStackParamList } from "@routes";
 import { TouchableOpacity } from "react-native";
 
+import { DrawerScreenProps } from '@react-navigation/drawer';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
+type HomeProps = DrawerScreenProps<RootDrawParamList, 'HomeScreen'>;
 
-export function Home({ navigation }: ScreenProps) {
+
+export function Home({ navigation }: HomeProps) {
+  function OpenMenuDraw() {
+    navigation.openDrawer()
+  }
+
   return (
-    <HomeScreen scrollable>
+    <HomeScreen scrollable openMenu={() => OpenMenuDraw()}>
       <TouchableOpacity>
         <Box style={AreaDog} flexDirection="row" gap="s24">
           <Box style={DogIcon} justifyContent="center" alignItems="center">
