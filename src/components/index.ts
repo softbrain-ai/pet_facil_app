@@ -7,6 +7,7 @@ export * from './Icon/Icon';
 
 // export * from './PasswordInput/PasswordInput';
 export * from './Screen/Screen';
+export * from './Screen/BasicScreen'
 export * from './Screen/HomeScreen';
 export * from './Text/Text';
 export * from './Form/index';

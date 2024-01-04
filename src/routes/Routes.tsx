@@ -2,17 +2,19 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreem, SignUpScreen, SuccessScreen, ForgotPasswordScreen, Home, MyAccount, MyPets } from '@screens'
+import { LoginScreem, SignUpScreen, SuccessScreen, ForgotPasswordScreen, Home, MyAccount, MyPets, AreaPet } from '@screens'
 import { IconProps } from '../components/Icon/Icon';
 
 import { DrawerScreenProps, createDrawerNavigator } from '@react-navigation/drawer';
 import { CustomDrawer } from '@components';
 
 
+
 export type RootStackParamList = {
   LoginScreen: undefined;
   HomeScreen: undefined;
   SignUpScreen: undefined;
+  AreaPetScreen: undefined;
   ForgotPasswordScreen: undefined
   SuccessScreen: {
     title: string;
@@ -25,6 +27,7 @@ export type RootDrawParamList = {
   HomeScreen: undefined;
   MyAccountScreen: undefined;
   MyPetsScreen: undefined;
+  AreaPetScreen: undefined;
   SuccessScreen: {
     title: string;
     description: string;
@@ -35,19 +38,16 @@ export type RootDrawParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator<RootDrawParamList>();
 
-type HomeRootProps = DrawerScreenProps<RootDrawParamList, 'HomeScreen'>;
-
-export function HomeRoot({ navigation }: HomeRootProps) {
+export function HomeRoot() {
   return (
-    <Drawer.Navigator initialRouteName="HomeScreen" screenOptions={{
-      headerShown: false,
-
-    }}
+    <Drawer.Navigator initialRouteName="HomeScreen"
+      screenOptions={{ headerShown: false }}
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen name="HomeScreen" component={Home} />
       <Drawer.Screen name="MyPetsScreen" component={MyPets} />
       <Drawer.Screen name="MyAccountScreen" component={MyAccount} />
+
     </Drawer.Navigator>
   );
 }
@@ -65,6 +65,7 @@ export function Router() {
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
         <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
+        <Stack.Screen name="AreaPetScreen" component={AreaPet} />
 
         <Stack.Screen
           name="HomeScreen"

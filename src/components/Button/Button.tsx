@@ -23,7 +23,7 @@ export function Button({
       alignItems="center"
       justifyContent="center"
       height={50}
-      borderRadius="s16"
+      borderRadius="s8"
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       {loading ? (

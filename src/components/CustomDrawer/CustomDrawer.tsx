@@ -3,12 +3,11 @@ import { Text } from "../Text/Text";
 import { Icon } from "../Icon/Icon";
 import { DrawerContentComponentProps, DrawerScreenProps } from "@react-navigation/drawer";
 import { RootDrawParamList } from "@routes";
-import { TouchableOpacity } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 
 type HomeRootProps = DrawerScreenProps<RootDrawParamList, 'HomeScreen'>;
 
 export function CustomDrawer({ ...props }: DrawerContentComponentProps) {
-
 
   function sair() {
     props.navigation.navigate('LoginScreen')
@@ -16,7 +15,7 @@ export function CustomDrawer({ ...props }: DrawerContentComponentProps) {
   }
 
   return (
-    <Box paddingHorizontal="s16">
+    <Box paddingHorizontal="s16" mt={Platform.OS == 'ios' ? 's32' : undefined}>
       <Box flexDirection="row" gap="s16" mt="s24" alignItems="center">
         <Box
           height={82}

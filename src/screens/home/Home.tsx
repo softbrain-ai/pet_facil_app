@@ -15,7 +15,7 @@ export function Home({ navigation }: HomeProps) {
 
   return (
     <HomeScreen scrollable openMenu={() => OpenMenuDraw()}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('AreaPetScreen')}>
         <Box style={AreaDog} flexDirection="row" gap="s24">
           <Box style={DogIcon} justifyContent="center" alignItems="center">
             <Icon name="dog" color='primary' />
